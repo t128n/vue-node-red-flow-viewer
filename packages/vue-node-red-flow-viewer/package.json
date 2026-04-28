@@ -1,6 +1,6 @@
 {
   "name": "vue-node-red-flow-viewer",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Vue 3 component library for rendering Node-RED flows with Vue Flow",
   "keywords": [
     "flow-based-programming",
