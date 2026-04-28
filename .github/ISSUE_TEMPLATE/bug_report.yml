@@ -1,0 +1,80 @@
+name: Bug report
+description: Report something that is broken, surprising, or inconsistent.
+title: '[Bug]: '
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please include enough context for someone else to reproduce the behavior without already knowing your project.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect instead?
+      placeholder: The viewer renders ... but I expected ...
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Share a minimal reproduction, repo, StackBlitz, or the smallest flow JSON and component setup that demonstrates the issue.
+      placeholder: |
+        1. Render FlowViewer with ...
+        2. Load this flow JSON: ...
+        3. Click or inspect ...
+    validations:
+      required: true
+  - type: textarea
+    id: flow-json
+    attributes:
+      label: Flow JSON
+      description: If the bug depends on a specific Node-RED flow, paste a minimal sanitized example.
+      render: json
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What do you see? Screenshots, console errors, and failing test output are helpful.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should happen?
+    validations:
+      required: true
+  - type: input
+    id: package-version
+    attributes:
+      label: Package version
+      placeholder: 'vue-node-red-flow-viewer 0.1.0'
+    validations:
+      required: true
+  - type: input
+    id: vue-version
+    attributes:
+      label: Vue version
+      placeholder: '3.5.x'
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and OS
+      placeholder: 'Chrome 124 on macOS 14, Firefox 125 on Windows 11, etc.'
+  - type: dropdown
+    id: regression
+    attributes:
+      label: Is this a regression?
+      options:
+        - 'No or not sure'
+        - 'Yes, this worked in an earlier version'
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+      description: Anything else that might help, such as related issues, constraints, or workarounds.

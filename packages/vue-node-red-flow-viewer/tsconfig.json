@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "ignoreDeprecations": "6.0",
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    },
+    "types": ["vitest/globals", "vite/client"]
+  },
+  "include": ["env.d.ts", "src/**/*.ts", "src/**/*.vue", "preview/**/*.ts", "preview/**/*.vue"],
+  "exclude": ["dist", "node_modules"]
+}

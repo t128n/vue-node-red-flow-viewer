@@ -1,0 +1,206 @@
+[
+  { "id": "tab-mqtt", "type": "tab", "label": "MQTT Routing", "disabled": false },
+  {
+    "id": "mqtt-temp",
+    "type": "mqtt in",
+    "z": "tab-mqtt",
+    "name": "sensor/temperature",
+    "topic": "sensor/temperature",
+    "qos": "1",
+    "x": 160,
+    "y": 100,
+    "wires": [["fn-parse-temp"]]
+  },
+  {
+    "id": "fn-parse-temp",
+    "type": "function",
+    "z": "tab-mqtt",
+    "name": "Parse Celsius",
+    "func": "msg.temp = parseFloat(msg.payload);\nreturn msg;",
+    "x": 390,
+    "y": 100,
+    "wires": [["sw-temp"]]
+  },
+  {
+    "id": "sw-temp",
+    "type": "switch",
+    "z": "tab-mqtt",
+    "name": "Route by range",
+    "property": "temp",
+    "propertyType": "msg",
+    "rules": [
+      { "t": "lt", "v": "0" },
+      { "t": "between", "v": "0", "v2": "20" },
+      { "t": "between", "v": "20", "v2": "35" },
+      { "t": "gt", "v": "35" }
+    ],
+    "checkall": "false",
+    "outputs": 4,
+    "x": 620,
+    "y": 100,
+    "wires": [["chg-freeze"], ["chg-cold"], ["chg-normal"], ["chg-hot"]]
+  },
+  {
+    "id": "chg-freeze",
+    "type": "change",
+    "z": "tab-mqtt",
+    "name": "Freezing",
+    "rules": [{ "t": "set", "p": "label", "pt": "msg", "to": "❄ FREEZING", "tot": "str" }],
+    "x": 860,
+    "y": 40,
+    "wires": [["mqtt-alert"]]
+  },
+  {
+    "id": "chg-cold",
+    "type": "change",
+    "z": "tab-mqtt",
+    "name": "Cold",
+    "rules": [{ "t": "set", "p": "label", "pt": "msg", "to": "Cold", "tot": "str" }],
+    "x": 860,
+    "y": 80,
+    "wires": [["dbg-temp"]]
+  },
+  {
+    "id": "chg-normal",
+    "type": "change",
+    "z": "tab-mqtt",
+    "name": "Normal",
+    "rules": [{ "t": "set", "p": "label", "pt": "msg", "to": "Normal", "tot": "str" }],
+    "x": 860,
+    "y": 120,
+    "wires": [["dbg-temp"]]
+  },
+  {
+    "id": "chg-hot",
+    "type": "change",
+    "z": "tab-mqtt",
+    "name": "Hot",
+    "rules": [{ "t": "set", "p": "label", "pt": "msg", "to": "🔥 HOT", "tot": "str" }],
+    "x": 860,
+    "y": 160,
+    "wires": [["mqtt-alert"]]
+  },
+  {
+    "id": "mqtt-alert",
+    "type": "mqtt out",
+    "z": "tab-mqtt",
+    "name": "alerts/temperature",
+    "topic": "alerts/temperature",
+    "qos": "2",
+    "retain": true,
+    "x": 1100,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "dbg-temp",
+    "type": "debug",
+    "z": "tab-mqtt",
+    "name": "Normal Range",
+    "active": true,
+    "x": 1100,
+    "y": 160,
+    "wires": []
+  },
+  {
+    "id": "mqtt-humidity",
+    "type": "mqtt in",
+    "z": "tab-mqtt",
+    "name": "sensor/humidity",
+    "topic": "sensor/humidity",
+    "qos": "1",
+    "x": 160,
+    "y": 280,
+    "wires": [["fn-humidity"]]
+  },
+  {
+    "id": "fn-humidity",
+    "type": "function",
+    "z": "tab-mqtt",
+    "name": "Check Humidity",
+    "func": "const h = parseFloat(msg.payload);\nmsg.humid = h;\nif (h > 80) msg.alert = true;\nreturn msg;",
+    "x": 390,
+    "y": 280,
+    "wires": [["sw-humid"]]
+  },
+  {
+    "id": "sw-humid",
+    "type": "switch",
+    "z": "tab-mqtt",
+    "name": "High humidity?",
+    "property": "alert",
+    "propertyType": "msg",
+    "rules": [{ "t": "true" }, { "t": "else" }],
+    "outputs": 2,
+    "x": 620,
+    "y": 280,
+    "wires": [["mqtt-alert"], ["dbg-humid"]]
+  },
+  {
+    "id": "dbg-humid",
+    "type": "debug",
+    "z": "tab-mqtt",
+    "name": "Humidity OK",
+    "active": true,
+    "x": 860,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "jct1",
+    "type": "junction",
+    "z": "tab-mqtt",
+    "x": 1000,
+    "y": 240,
+    "wires": [["dbg-all"]]
+  },
+  {
+    "id": "dbg-all",
+    "type": "debug",
+    "z": "tab-mqtt",
+    "name": "All Events",
+    "active": false,
+    "x": 1160,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "li-sensor",
+    "type": "link in",
+    "z": "tab-mqtt",
+    "name": "[log] sensor data",
+    "x": 200,
+    "y": 420,
+    "wires": [["fn-timeseries"]]
+  },
+  {
+    "id": "fn-timeseries",
+    "type": "function",
+    "z": "tab-mqtt",
+    "name": "Write Time-Series",
+    "func": "// write to influxdb or similar\nreturn msg;",
+    "x": 420,
+    "y": 420,
+    "wires": [[]]
+  },
+  {
+    "id": "lo-temp",
+    "type": "link out",
+    "z": "tab-mqtt",
+    "name": "",
+    "links": ["li-sensor"],
+    "x": 1280,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "lo-humid",
+    "type": "link out",
+    "z": "tab-mqtt",
+    "name": "",
+    "links": ["li-sensor"],
+    "x": 1280,
+    "y": 280,
+    "wires": []
+  }
+]

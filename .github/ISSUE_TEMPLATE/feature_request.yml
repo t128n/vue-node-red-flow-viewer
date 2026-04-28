@@ -1,0 +1,59 @@
+name: Feature request
+description: Suggest an improvement, new option, or supported use case.
+title: '[Feature]: '
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Good feature requests describe the use case first. The final solution may differ from the first idea, so please leave room for design discussion.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Use case
+      description: What are you trying to build or improve? Who needs it?
+      placeholder: I am rendering flows where ... and need to ...
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What should become possible when this is supported?
+      placeholder: It should be possible to ...
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Possible approach
+      description: If you already have an API, option, event, styling hook, or behavior in mind, describe it here.
+      placeholder: Add an option/event/prop that ...
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What have you tried already? Are there workarounds that are close but not enough?
+  - type: textarea
+    id: examples
+    attributes:
+      label: Example
+      description: Share sample usage, flow JSON, a screenshot, or a small sketch of the desired result.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Impact
+      description: Select any areas this request likely touches.
+      options:
+        - label: Rendering or layout
+        - label: Node or wire styling
+        - label: Component API
+        - label: Events or interaction
+        - label: Documentation
+        - label: Build, packaging, or types
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+      description: Link related issues, prior art, or packages with similar behavior.

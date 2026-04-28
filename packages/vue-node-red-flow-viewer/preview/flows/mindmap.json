@@ -1,0 +1,220 @@
+[
+  { "id": "tab-mind", "type": "tab", "label": "Mind Map", "disabled": false },
+  {
+    "id": "topic1",
+    "type": "Topic",
+    "z": "tab-mind",
+    "name": "Reactive Programming",
+    "x": 500,
+    "y": 300,
+    "wires": [["idea1", "idea2", "idea3", "idea4"]]
+  },
+  {
+    "id": "idea1",
+    "type": "Idea",
+    "z": "tab-mind",
+    "name": "Observables",
+    "x": 240,
+    "y": 160,
+    "wires": [["thought1", "thought2"]]
+  },
+  {
+    "id": "idea2",
+    "type": "Idea",
+    "z": "tab-mind",
+    "name": "Operators",
+    "x": 240,
+    "y": 300,
+    "wires": [["thought3", "thought4"]]
+  },
+  {
+    "id": "idea3",
+    "type": "Idea",
+    "z": "tab-mind",
+    "name": "Subjects",
+    "x": 240,
+    "y": 440,
+    "wires": [["thought5"]]
+  },
+  {
+    "id": "idea4",
+    "type": "Idea",
+    "z": "tab-mind",
+    "name": "Schedulers",
+    "x": 240,
+    "y": 560,
+    "wires": [["thought6"]]
+  },
+  {
+    "id": "thought1",
+    "type": "Thought",
+    "z": "tab-mind",
+    "name": "Cold vs Hot",
+    "x": 80,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "thought2",
+    "type": "Thought",
+    "z": "tab-mind",
+    "name": "Unicast by default",
+    "x": 80,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "thought3",
+    "type": "Thought",
+    "z": "tab-mind",
+    "name": "map / filter / reduce",
+    "x": 80,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "thought4",
+    "type": "Thought",
+    "z": "tab-mind",
+    "name": "mergeMap, switchMap",
+    "x": 80,
+    "y": 320,
+    "wires": []
+  },
+  {
+    "id": "thought5",
+    "type": "Thought",
+    "z": "tab-mind",
+    "name": "BehaviorSubject",
+    "x": 80,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "thought6",
+    "type": "Thought",
+    "z": "tab-mind",
+    "name": "asyncScheduler",
+    "x": 80,
+    "y": 560,
+    "wires": []
+  },
+  {
+    "id": "consq1",
+    "type": "Consequence",
+    "z": "tab-mind",
+    "name": "Easier async code",
+    "x": 760,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "consq2",
+    "type": "Consequence",
+    "z": "tab-mind",
+    "name": "Steep learning curve",
+    "x": 760,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "adv1",
+    "type": "Advantage",
+    "z": "tab-mind",
+    "name": "Composable pipelines",
+    "x": 760,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "adv2",
+    "type": "Advantage",
+    "z": "tab-mind",
+    "name": "Cancellation support",
+    "x": 760,
+    "y": 420,
+    "wires": []
+  },
+  {
+    "id": "disadv1",
+    "type": "Disadvantage",
+    "z": "tab-mind",
+    "name": "Debugging complexity",
+    "x": 760,
+    "y": 500,
+    "wires": []
+  },
+  {
+    "id": "topic1-link",
+    "type": "link out",
+    "z": "tab-mind",
+    "name": "",
+    "links": [],
+    "x": 680,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "quote1",
+    "type": "Quote",
+    "z": "tab-mind",
+    "name": "Everything is a stream",
+    "x": 500,
+    "y": 500,
+    "wires": []
+  },
+  {
+    "id": "book1",
+    "type": "Book",
+    "z": "tab-mind",
+    "name": "RxJS in Action",
+    "x": 500,
+    "y": 560,
+    "wires": []
+  },
+  {
+    "id": "topic2",
+    "type": "Topic",
+    "z": "tab-mind",
+    "name": "Functional Programming",
+    "x": 500,
+    "y": 700,
+    "wires": [["idea5", "idea6"]]
+  },
+  {
+    "id": "idea5",
+    "type": "Idea",
+    "z": "tab-mind",
+    "name": "Pure Functions",
+    "x": 240,
+    "y": 680,
+    "wires": [["thought7"]]
+  },
+  {
+    "id": "idea6",
+    "type": "Idea",
+    "z": "tab-mind",
+    "name": "Immutability",
+    "x": 240,
+    "y": 760,
+    "wires": [["thought8"]]
+  },
+  {
+    "id": "thought7",
+    "type": "Thought",
+    "z": "tab-mind",
+    "name": "No side effects",
+    "x": 80,
+    "y": 680,
+    "wires": []
+  },
+  {
+    "id": "thought8",
+    "type": "Thought",
+    "z": "tab-mind",
+    "name": "Persistent data structures",
+    "x": 80,
+    "y": 760,
+    "wires": []
+  }
+]

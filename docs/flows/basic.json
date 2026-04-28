@@ -1,0 +1,127 @@
+[
+  { "id": "tab-basic", "type": "tab", "label": "Basic Pipeline", "disabled": false },
+  {
+    "id": "inj1",
+    "type": "inject",
+    "z": "tab-basic",
+    "name": "Every 5s",
+    "props": [{ "p": "payload" }],
+    "repeat": "5",
+    "x": 150,
+    "y": 120,
+    "wires": [["fn1"]]
+  },
+  {
+    "id": "fn1",
+    "type": "function",
+    "z": "tab-basic",
+    "name": "Transform",
+    "func": "msg.payload = msg.payload.toString().toUpperCase();\nreturn msg;",
+    "outputs": 2,
+    "x": 380,
+    "y": 120,
+    "wires": [["dbg1"], ["dbg2"]]
+  },
+  {
+    "id": "dbg1",
+    "type": "debug",
+    "z": "tab-basic",
+    "name": "Output A",
+    "active": true,
+    "tosidebar": true,
+    "x": 600,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "dbg2",
+    "type": "debug",
+    "z": "tab-basic",
+    "name": "Output B",
+    "active": true,
+    "tosidebar": true,
+    "x": 600,
+    "y": 160,
+    "wires": []
+  },
+  {
+    "id": "http1",
+    "type": "http in",
+    "z": "tab-basic",
+    "name": "GET /status",
+    "method": "get",
+    "url": "/status",
+    "x": 150,
+    "y": 260,
+    "wires": [["fn2"]]
+  },
+  {
+    "id": "fn2",
+    "type": "function",
+    "z": "tab-basic",
+    "name": "Build Response",
+    "func": "msg.payload = { status: 'ok' };\nreturn msg;",
+    "x": 380,
+    "y": 260,
+    "wires": [["resp1"]]
+  },
+  {
+    "id": "resp1",
+    "type": "http response",
+    "z": "tab-basic",
+    "name": "",
+    "statusCode": "200",
+    "x": 600,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "mqtt1",
+    "type": "mqtt in",
+    "z": "tab-basic",
+    "name": "sensor/temp",
+    "topic": "sensor/temp",
+    "x": 150,
+    "y": 400,
+    "wires": [["sw1"]]
+  },
+  {
+    "id": "sw1",
+    "type": "switch",
+    "z": "tab-basic",
+    "name": "> 30°C?",
+    "rules": [{ "t": "gt", "v": "30" }, { "t": "else" }],
+    "checkall": "true",
+    "outputs": 2,
+    "x": 380,
+    "y": 400,
+    "wires": [["chg1"], ["chg2"]]
+  },
+  {
+    "id": "chg1",
+    "type": "change",
+    "z": "tab-basic",
+    "name": "Set alert",
+    "x": 580,
+    "y": 370,
+    "wires": [["dbg3"]]
+  },
+  {
+    "id": "chg2",
+    "type": "change",
+    "z": "tab-basic",
+    "name": "Set normal",
+    "x": 580,
+    "y": 430,
+    "wires": [["dbg3"]]
+  },
+  {
+    "id": "dbg3",
+    "type": "debug",
+    "z": "tab-basic",
+    "name": "Temp Status",
+    "x": 780,
+    "y": 400,
+    "wires": []
+  }
+]

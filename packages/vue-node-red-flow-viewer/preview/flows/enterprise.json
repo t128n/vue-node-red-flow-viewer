@@ -1,0 +1,84 @@
+[
+  {
+    "id": "sim_all",
+    "type": "inject",
+    "z": "flow1",
+    "name": "Simulate 133 meters (5s)",
+    "repeat": "5",
+    "x": 140,
+    "y": 80,
+    "wires": [["gen_all"]]
+  },
+  {
+    "id": "gen_all",
+    "type": "function",
+    "z": "flow1",
+    "name": "Generate kWh for 133 meters",
+    "func": "for (let i = 1; i <= 133; i++) {\n  let kwh = flow.get('kwh_' + i) || 0;\n  kwh += Math.random() * 0.03;\n  flow.set('kwh_' + i, kwh);\n  node.send({ topic: 'meter/' + i + '/kwh', payload: kwh });\n}\nreturn null;",
+    "x": 380,
+    "y": 80,
+    "wires": [["process_all"]]
+  },
+  {
+    "id": "process_all",
+    "type": "function",
+    "z": "flow1",
+    "name": "Billing Engine",
+    "func": "let topic = msg.topic;\nlet id = topic.split('/')[1];\nlet current = parseFloat(msg.payload);\n\nlet last = flow.get('last_' + id) || current;\nlet usage = current - last;\nif (usage < 0) usage = 0;\nflow.set('last_' + id, current);\n\nlet tariff = 0.50;\nlet balance = flow.get('bal_' + id) || 50;\n\nlet cost = usage * tariff;\nbalance -= cost;\n\nflow.set('bal_' + id, balance);\n\nmsg.meter_id = id;\nmsg.usage = usage;\nmsg.balance = balance;\n\nreturn msg;",
+    "x": 620,
+    "y": 80,
+    "wires": [["control_logic", "debug_out"]]
+  },
+  {
+    "id": "control_logic",
+    "type": "function",
+    "z": "flow1",
+    "name": "Control Logic",
+    "func": "let id = msg.meter_id;\n\nif (msg.balance <= 0) {\n  return { topic: 'meter/' + id + '/control', payload: 'OFF' };\n} else {\n  return { topic: 'meter/' + id + '/control', payload: 'ON' };\n}",
+    "x": 850,
+    "y": 60,
+    "wires": [["mqtt_out"]]
+  },
+  {
+    "id": "mqtt_out",
+    "type": "mqtt out",
+    "z": "flow1",
+    "name": "Send Control",
+    "topic": "",
+    "broker": "mqtt_broker",
+    "x": 1080,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "debug_out",
+    "type": "debug",
+    "z": "flow1",
+    "name": "Monitor",
+    "active": true,
+    "x": 860,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "topup_in",
+    "type": "mqtt in",
+    "z": "flow1",
+    "name": "Topup",
+    "topic": "meter/+/topup",
+    "broker": "mqtt_broker",
+    "x": 140,
+    "y": 200,
+    "wires": [["topup_fn"]]
+  },
+  {
+    "id": "topup_fn",
+    "type": "function",
+    "z": "flow1",
+    "name": "Topup Logic",
+    "func": "let id = msg.topic.split('/')[1];\nlet amount = parseFloat(msg.payload);\n\nlet balance = flow.get('bal_' + id) || 0;\nbalance += amount;\n\nflow.set('bal_' + id, balance);\n\nreturn { topic: 'meter/' + id + '/status', payload: 'Topup OK: ' + balance };",
+    "x": 380,
+    "y": 200,
+    "wires": [["mqtt_out"]]
+  }
+]

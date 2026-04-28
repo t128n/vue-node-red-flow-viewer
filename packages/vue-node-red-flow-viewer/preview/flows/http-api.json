@@ -1,0 +1,236 @@
+[
+  { "id": "tab-http", "type": "tab", "label": "HTTP API", "disabled": false },
+  {
+    "id": "grp-auth",
+    "type": "group",
+    "z": "tab-http",
+    "name": "Auth Middleware",
+    "style": {
+      "label": true,
+      "label-position": "nw",
+      "stroke": "#aaaaff",
+      "fill": "#f0f0ff",
+      "fill-opacity": "0.5",
+      "color": "#6666cc"
+    },
+    "nodes": ["http-in1", "fn-auth", "sw-auth"],
+    "x": 40,
+    "y": 60,
+    "w": 680,
+    "h": 120
+  },
+  {
+    "id": "http-in1",
+    "type": "http in",
+    "z": "tab-http",
+    "g": "grp-auth",
+    "name": "POST /api/data",
+    "method": "post",
+    "url": "/api/data",
+    "x": 160,
+    "y": 120,
+    "wires": [["fn-auth"]]
+  },
+  {
+    "id": "fn-auth",
+    "type": "function",
+    "z": "tab-http",
+    "g": "grp-auth",
+    "name": "Validate Token",
+    "func": "const token = msg.req.headers.authorization;\nif (!token) { msg.statusCode = 401; return [null, msg]; }\nmsg.userId = token.split(' ')[1];\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 380,
+    "y": 120,
+    "wires": [["sw-auth"], ["resp-401"]]
+  },
+  {
+    "id": "sw-auth",
+    "type": "switch",
+    "z": "tab-http",
+    "g": "grp-auth",
+    "name": "Token OK?",
+    "property": "userId",
+    "propertyType": "msg",
+    "rules": [{ "t": "nnull" }, { "t": "else" }],
+    "outputs": 2,
+    "x": 590,
+    "y": 120,
+    "wires": [["fn-parse"], ["resp-401"]]
+  },
+  {
+    "id": "grp-process",
+    "type": "group",
+    "z": "tab-http",
+    "name": "Processing",
+    "style": {
+      "label": true,
+      "label-position": "nw",
+      "stroke": "#44aa44",
+      "fill": "#f0fff0",
+      "fill-opacity": "0.5",
+      "color": "#338833"
+    },
+    "nodes": ["fn-parse", "fn-validate", "fn-store"],
+    "x": 40,
+    "y": 240,
+    "w": 620,
+    "h": 120
+  },
+  {
+    "id": "fn-parse",
+    "type": "function",
+    "z": "tab-http",
+    "g": "grp-process",
+    "name": "Parse Body",
+    "func": "try {\n  msg.data = JSON.parse(msg.payload);\n  return [msg, null];\n} catch(e) {\n  msg.statusCode = 400;\n  msg.payload = { error: 'Invalid JSON' };\n  return [null, msg];\n}",
+    "outputs": 2,
+    "x": 160,
+    "y": 300,
+    "wires": [["fn-validate"], ["resp-400"]]
+  },
+  {
+    "id": "fn-validate",
+    "type": "function",
+    "z": "tab-http",
+    "g": "grp-process",
+    "name": "Validate Schema",
+    "func": "if (!msg.data.name) {\n  msg.statusCode = 422;\n  return [null, msg];\n}\nreturn [msg, null];",
+    "outputs": 2,
+    "x": 370,
+    "y": 300,
+    "wires": [["fn-store"], ["resp-422"]]
+  },
+  {
+    "id": "fn-store",
+    "type": "function",
+    "z": "tab-http",
+    "g": "grp-process",
+    "name": "Store to DB",
+    "func": "// simulate storage\nmsg.result = { id: Date.now(), ...msg.data };\nreturn msg;",
+    "x": 570,
+    "y": 300,
+    "wires": [["resp-201"]]
+  },
+  {
+    "id": "resp-201",
+    "type": "http response",
+    "z": "tab-http",
+    "name": "201 Created",
+    "statusCode": "201",
+    "x": 820,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "grp-errors",
+    "type": "group",
+    "z": "tab-http",
+    "name": "Error Responses",
+    "style": {
+      "label": true,
+      "label-position": "nw",
+      "stroke": "#cc4444",
+      "fill": "#fff0f0",
+      "fill-opacity": "0.5",
+      "color": "#cc4444"
+    },
+    "nodes": ["resp-400", "resp-401", "resp-422"],
+    "x": 40,
+    "y": 440,
+    "w": 520,
+    "h": 160
+  },
+  {
+    "id": "resp-400",
+    "type": "http response",
+    "z": "tab-http",
+    "g": "grp-errors",
+    "name": "400 Bad Request",
+    "statusCode": "400",
+    "x": 160,
+    "y": 480,
+    "wires": []
+  },
+  {
+    "id": "resp-401",
+    "type": "http response",
+    "z": "tab-http",
+    "g": "grp-errors",
+    "name": "401 Unauthorized",
+    "statusCode": "401",
+    "x": 380,
+    "y": 480,
+    "wires": []
+  },
+  {
+    "id": "resp-422",
+    "type": "http response",
+    "z": "tab-http",
+    "g": "grp-errors",
+    "name": "422 Unprocessable",
+    "statusCode": "422",
+    "x": 160,
+    "y": 540,
+    "wires": []
+  },
+  {
+    "id": "li-log",
+    "type": "link in",
+    "z": "tab-http",
+    "name": "[log] all requests",
+    "x": 820,
+    "y": 120,
+    "wires": [["fn-log"]]
+  },
+  {
+    "id": "fn-log",
+    "type": "function",
+    "z": "tab-http",
+    "name": "Audit Log",
+    "func": "console.log(msg.req.method, msg.req.url);\nreturn msg;",
+    "x": 820,
+    "y": 180,
+    "wires": [[]]
+  },
+  {
+    "id": "lo-log1",
+    "type": "link out",
+    "z": "tab-http",
+    "name": "log",
+    "links": ["li-log"],
+    "x": 820,
+    "y": 540,
+    "wires": []
+  },
+  {
+    "id": "http-in2",
+    "type": "http in",
+    "z": "tab-http",
+    "name": "GET /api/health",
+    "method": "get",
+    "url": "/api/health",
+    "x": 160,
+    "y": 640,
+    "wires": [["fn-health"]]
+  },
+  {
+    "id": "fn-health",
+    "type": "function",
+    "z": "tab-http",
+    "name": "Health Check",
+    "func": "msg.payload = { ok: true, ts: Date.now() };\nreturn msg;",
+    "x": 380,
+    "y": 640,
+    "wires": [["resp-health"]]
+  },
+  {
+    "id": "resp-health",
+    "type": "http response",
+    "z": "tab-http",
+    "name": "200 OK",
+    "statusCode": "200",
+    "x": 580,
+    "y": 640,
+    "wires": []
+  }
+]

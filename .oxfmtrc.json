@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 100,
+  "singleQuote": true,
+  "semi": false,
+  "trailingComma": "all",
+  "sortImports": {
+    "internalPattern": ["~/"]
+  },
+  "ignorePatterns": [
+    ".agents/**",
+    "dist/**",
+    "**/dist/**",
+    "node_modules/**",
+    "docs/.vitepress/cache/**",
+    "docs/.vitepress/dist/**",
+    "pnpm-lock.yaml",
+    "packages/vue-node-red-flow-viewer/preview/flows/test-flow.json"
+  ]
+}

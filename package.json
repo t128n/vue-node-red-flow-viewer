@@ -1,0 +1,26 @@
+{
+  "name": "vue-node-red-flow-viewer-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter vue-node-red-flow-viewer build && pnpm --filter @t128n/vue-node-red-flow-viewer-docs dev",
+    "build": "pnpm --filter vue-node-red-flow-viewer build",
+    "format": "oxfmt . --write",
+    "format:check": "oxfmt . --check",
+    "lint": "oxlint .",
+    "typecheck": "pnpm --filter vue-node-red-flow-viewer build && pnpm --filter vue-node-red-flow-viewer typecheck && pnpm --filter @t128n/vue-node-red-flow-viewer-docs typecheck",
+    "ci": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run test && pnpm run build && pnpm run docs:build",
+    "test": "pnpm --filter vue-node-red-flow-viewer test",
+    "test:ui": "pnpm --filter vue-node-red-flow-viewer test:ui",
+    "test:watch": "pnpm --filter vue-node-red-flow-viewer test:watch",
+    "docs:dev": "pnpm --filter vue-node-red-flow-viewer build && pnpm --filter @t128n/vue-node-red-flow-viewer-docs dev",
+    "docs:build": "pnpm --filter vue-node-red-flow-viewer build && pnpm --filter @t128n/vue-node-red-flow-viewer-docs build",
+    "docs:preview": "pnpm --filter @t128n/vue-node-red-flow-viewer-docs preview"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.47.0",
+    "oxlint": "^1.62.0"
+  },
+  "packageManager": "pnpm@9.15.9"
+}

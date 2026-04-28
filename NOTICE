@@ -1,0 +1,9 @@
+vue-node-red-flow-viewer
+Copyright 2026 t128n
+
+This package is adapted and ported to Vue from work originally based on
+node-red-flowviewer-js by Gerrit Riessen:
+https://github.com/gorenje/node-red-flowviewer-js
+
+The package renders Node-RED flow JSON and is not affiliated with or endorsed by
+the Node-RED project.

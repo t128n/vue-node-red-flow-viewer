@@ -1,0 +1,27 @@
+{
+  "name": "@t128n/vue-node-red-flow-viewer-docs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "pnpm --filter vue-node-red-flow-viewer build",
+    "prebuild": "pnpm --filter vue-node-red-flow-viewer build",
+    "pretypecheck": "pnpm --filter vue-node-red-flow-viewer build",
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "vue": "^3.4.0",
+    "vue-node-red-flow-viewer": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.3",
+    "vite": "^5.0.0",
+    "vitepress": "^1.6.4",
+    "vue-tsc": "^3.2.7"
+  },
+  "packageManager": "pnpm@9.15.9"
+}
