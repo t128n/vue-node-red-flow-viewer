@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'packages/vue-node-red-flow-viewer/**'
 
 permissions:
   contents: read
