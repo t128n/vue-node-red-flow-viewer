@@ -33,7 +33,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22.22.2
+          node-version: 24
           registry-url: 'https://registry.npmjs.org'
           cache: pnpm
 
@@ -52,7 +52,6 @@ jobs:
 
       - name: Release, Commit, Tag, and Push
         working-directory: packages/vue-node-red-flow-viewer
-        # Using npx ensures we access the CLI flags without modifying your existing package.json scripts
         run: pnpm exec changelogen --release --push
 
       - name: Get post-bump version
@@ -70,4 +69,4 @@ jobs:
       - name: Publish package
         if: steps.pre_bump.outputs.version != steps.post_bump.outputs.version
         working-directory: packages/vue-node-red-flow-viewer
-        run: npm publish
+        run: npm publish --provenance --access public
