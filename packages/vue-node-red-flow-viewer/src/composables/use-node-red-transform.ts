@@ -46,6 +46,7 @@ export function transformFlow(
     if (n.type === 'subflow' && n.id === flowId) {
       for (const inp of n.in ?? []) {
         for (const wire of inp.wires ?? []) {
+          if (Array.isArray(wire)) continue
           const targetId = typeof wire === 'string' ? wire : wire.id
           if (targetId) hasInputMap[targetId] = true
         }

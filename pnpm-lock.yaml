@@ -14,6 +14,9 @@ importers:
       oxlint:
         specifier: ^1.62.0
         version: 1.62.0
+      simple-git-hooks:
+        specifier: ^2.11.1
+        version: 2.13.1
 
   docs:
     dependencies:
@@ -2164,6 +2167,10 @@ packages:
   signal-exit@4.1.0:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
+
+  simple-git-hooks@2.13.1:
+    resolution: {integrity: sha512-WszCLXwT4h2k1ufIXAgsbiTOazqqevFCIncOuUBZJ91DdvWcC5+OFkluWRQPrcuSYd8fjq+o2y1QfWqYMoAToQ==}
+    hasBin: true
 
   sirv@2.0.4:
     resolution: {integrity: sha512-94Bdh3cC2PKrbgSOUqTiGPWVZeSiXfKOVZNJniWoqrWrRkB1CJzBU3NEbiTsPcYy1lDsANA/THzS+9WBiy5nfQ==}
@@ -4515,6 +4522,8 @@ snapshots:
   siginfo@2.0.0: {}
 
   signal-exit@4.1.0: {}
+
+  simple-git-hooks@2.13.1: {}
 
   sirv@2.0.4:
     dependencies:

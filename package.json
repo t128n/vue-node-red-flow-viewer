@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepare": "simple-git-hooks",
     "dev": "pnpm --filter vue-node-red-flow-viewer build && pnpm --filter @t128n/vue-node-red-flow-viewer-docs dev",
     "build": "pnpm --filter vue-node-red-flow-viewer build",
     "format": "oxfmt . --write",
@@ -20,7 +21,11 @@
   },
   "devDependencies": {
     "oxfmt": "^0.47.0",
-    "oxlint": "^1.62.0"
+    "oxlint": "^1.62.0",
+    "simple-git-hooks": "^2.11.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm run ci"
   },
   "packageManager": "pnpm@9.15.9"
 }
