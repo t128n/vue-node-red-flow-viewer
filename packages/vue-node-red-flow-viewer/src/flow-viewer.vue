@@ -297,6 +297,7 @@ defineExpose({
   --nr-font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --nr-label-font-size: 14px;
+  --nr-label-color: #000000;
   --nr-port-color: rgb(217, 217, 217);
   --nr-port-border-color: rgb(153, 153, 153);
   --nr-group-radius: 5px;
@@ -305,6 +306,8 @@ defineExpose({
   --nr-tab-active-bg: #ffffff;
   --nr-tab-text: #64748b;
   --nr-tab-active-text: #0f172a;
+  --nr-btn-bg: #ffffff;
+  --nr-btn-bg-hover: #f8fafc;
 
   width: 100%;
   height: 100%;
@@ -338,7 +341,7 @@ defineExpose({
 }
 
 .nr-flowviewer__tab:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--nr-tab-hover-bg, rgba(255, 255, 255, 0.5));
 }
 
 .nr-flowviewer__tab--active {
@@ -364,7 +367,7 @@ defineExpose({
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: var(--nr-btn-bg);
   border: 1px solid var(--nr-grid-color);
   border-radius: 6px;
   cursor: pointer;
@@ -374,7 +377,7 @@ defineExpose({
 }
 
 .nr-flowviewer__btn:hover {
-  background: #f8fafc;
+  background: var(--nr-btn-bg-hover);
   color: var(--nr-tab-active-text);
   border-color: var(--nr-tab-text);
 }
@@ -402,5 +405,40 @@ defineExpose({
 
 .vue-flow__background {
   background-color: var(--nr-flow-bg);
+}
+
+/* Dark mode — .dark class (e.g. VitePress) */
+.dark .nr-flowviewer {
+  --nr-flow-bg: #1e1e2e;
+  --nr-grid-color: #374151;
+  --nr-tab-bg: #1f2937;
+  --nr-tab-active-bg: #111827;
+  --nr-tab-text: #94a3b8;
+  --nr-tab-active-text: #f1f5f9;
+  --nr-tab-hover-bg: rgba(255, 255, 255, 0.08);
+  --nr-btn-bg: #1f2937;
+  --nr-btn-bg-hover: #374151;
+  --nr-wire-color: #6b7280;
+  --nr-port-color: rgb(75, 85, 99);
+  --nr-port-border-color: rgb(107, 114, 128);
+  /* --nr-label-color intentionally stays #000000 — node backgrounds are always light pastels */
+}
+
+/* Dark mode — system preference (standalone use outside VitePress) */
+@media (prefers-color-scheme: dark) {
+  .nr-flowviewer:not([data-theme='light']) {
+    --nr-flow-bg: #1e1e2e;
+    --nr-grid-color: #374151;
+    --nr-tab-bg: #1f2937;
+    --nr-tab-active-bg: #111827;
+    --nr-tab-text: #94a3b8;
+    --nr-tab-active-text: #f1f5f9;
+    --nr-tab-hover-bg: rgba(255, 255, 255, 0.08);
+    --nr-btn-bg: #1f2937;
+    --nr-btn-bg-hover: #374151;
+    --nr-wire-color: #6b7280;
+    --nr-port-color: rgb(75, 85, 99);
+    --nr-port-border-color: rgb(107, 114, 128);
+  }
 }
 </style>

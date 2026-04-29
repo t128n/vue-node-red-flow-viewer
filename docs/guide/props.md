@@ -65,6 +65,7 @@ Set these variables on the component or a wrapper class.
 | `--nr-wire-width`        | `3`                | Wire width variable.         |
 | `--nr-font-family`       | system UI stack    | Label font.                  |
 | `--nr-label-font-size`   | `14px`             | Node label size.             |
+| `--nr-label-color`       | `#000000`          | Node label text color. Stays dark by default since node backgrounds are always light pastels. |
 | `--nr-port-color`        | `rgb(217,217,217)` | Port fill.                   |
 | `--nr-port-border-color` | `rgb(153,153,153)` | Port border.                 |
 | `--nr-group-radius`      | `5px`              | Group radius.                |
@@ -73,6 +74,9 @@ Set these variables on the component or a wrapper class.
 | `--nr-tab-active-bg`     | `#ffffff`          | Active tab background.       |
 | `--nr-tab-text`          | `#64748b`          | Inactive tab text.           |
 | `--nr-tab-active-text`   | `#0f172a`          | Active tab text.             |
+| `--nr-tab-hover-bg`      | `rgba(255,255,255,0.5)` | Tab hover background.   |
+| `--nr-btn-bg`            | `#ffffff`          | Control button background.   |
+| `--nr-btn-bg-hover`      | `#f8fafc`          | Control button hover background. |
 
 ## `transformFlow(flowData, flowId, options)`
 
