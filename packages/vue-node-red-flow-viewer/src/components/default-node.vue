@@ -11,6 +11,7 @@
       position: 'relative',
       overflow: 'visible',
       boxSizing: 'border-box',
+      boxShadow: 'var(--nr-node-shadow, 0 1px 4px rgba(0, 0, 0, 0.18))',
     }"
   >
     <!-- Left icon panel dark overlay -->
@@ -22,7 +23,7 @@
         top: 0,
         width: '30px',
         height: '100%',
-        background: 'rgba(0,0,0,0.1)',
+        background: 'var(--nr-node-icon-panel-bg, rgba(0, 0, 0, 0.08))',
         borderRadius:
           'calc(var(--nr-node-radius, 5px) - 1px) 0 0 calc(var(--nr-node-radius, 5px) - 1px)',
       }"
@@ -36,7 +37,7 @@
         top: '0.5px',
         width: '1px',
         height: data.height - 1 + 'px',
-        background: 'rgba(0,0,0,0.1)',
+        background: 'var(--nr-node-separator-color, rgba(0, 0, 0, 0.12))',
       }"
     />
 

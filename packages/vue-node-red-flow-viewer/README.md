@@ -71,8 +71,8 @@ The component ships CSS variables for theming:
 
 ```css
 .viewer {
-  --nr-flow-bg: #ffffff;
-  --nr-grid-color: #d1d5db;
+  --nr-flow-bg: #f3f3f3;
+  --nr-grid-color: #d4d4d4;
   --nr-wire-color: #999;
   --nr-wire-width: 3;
 }

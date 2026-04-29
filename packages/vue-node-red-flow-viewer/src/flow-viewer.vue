@@ -289,25 +289,30 @@ defineExpose({
 
 <style>
 .nr-flowviewer {
-  --nr-flow-bg: #ffffff;
-  --nr-grid-color: #d1d5db;
+  --nr-flow-bg: #f3f3f3;
+  --nr-grid-color: #d4d4d4;
+  --nr-border-color: #c7c7c7;
+  --nr-accent-color: #8f0000;
   --nr-node-radius: 5px;
+  --nr-node-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  --nr-node-icon-panel-bg: rgba(0, 0, 0, 0.08);
+  --nr-node-separator-color: rgba(0, 0, 0, 0.12);
   --nr-wire-color: #999;
   --nr-wire-width: 3;
-  --nr-font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --nr-font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
   --nr-label-font-size: 14px;
-  --nr-label-color: #000000;
+  --nr-label-color: #333333;
   --nr-port-color: rgb(217, 217, 217);
   --nr-port-border-color: rgb(153, 153, 153);
   --nr-group-radius: 5px;
   --nr-group-label-size: 12px;
-  --nr-tab-bg: #f1f5f9;
+  --nr-tab-bg: #eeeeee;
   --nr-tab-active-bg: #ffffff;
-  --nr-tab-text: #64748b;
-  --nr-tab-active-text: #0f172a;
-  --nr-btn-bg: #ffffff;
-  --nr-btn-bg-hover: #f8fafc;
+  --nr-tab-text: #666666;
+  --nr-tab-active-text: #333333;
+  --nr-tab-hover-bg: #f8f8f8;
+  --nr-btn-bg: #f8f8f8;
+  --nr-btn-bg-hover: #ffffff;
 
   width: 100%;
   height: 100%;
@@ -321,32 +326,37 @@ defineExpose({
 .nr-flowviewer__tabs {
   display: flex;
   background: var(--nr-tab-bg);
-  padding: 4px 4px 0;
+  padding: 5px 8px 0;
   gap: 2px;
-  border-bottom: 1px solid var(--nr-grid-color);
+  border-bottom: 1px solid var(--nr-border-color);
   flex-shrink: 0;
   overflow-x: auto;
 }
 
 .nr-flowviewer__tab {
-  padding: 6px 16px;
+  padding: 6px 14px;
   border: 1px solid transparent;
   border-bottom: none;
-  border-radius: 6px 6px 0 0;
+  border-radius: 3px 3px 0 0;
   font-size: 12px;
+  line-height: 18px;
   cursor: pointer;
   color: var(--nr-tab-text);
   white-space: nowrap;
-  transition: all 0.2s;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s,
+    color 0.15s;
 }
 
 .nr-flowviewer__tab:hover {
-  background: var(--nr-tab-hover-bg, rgba(255, 255, 255, 0.5));
+  background: var(--nr-tab-hover-bg);
 }
 
 .nr-flowviewer__tab--active {
   background: var(--nr-tab-active-bg);
-  border-color: var(--nr-grid-color);
+  border-color: var(--nr-border-color);
+  border-top-color: var(--nr-accent-color);
   color: var(--nr-tab-active-text);
   font-weight: 600;
 }
@@ -368,18 +378,21 @@ defineExpose({
   align-items: center;
   justify-content: center;
   background: var(--nr-btn-bg);
-  border: 1px solid var(--nr-grid-color);
-  border-radius: 6px;
+  border: 1px solid var(--nr-border-color);
+  border-radius: 3px;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
   color: var(--nr-tab-text);
-  transition: all 0.2s;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s,
+    color 0.15s;
 }
 
 .nr-flowviewer__btn:hover {
   background: var(--nr-btn-bg-hover);
   color: var(--nr-tab-active-text);
-  border-color: var(--nr-tab-text);
+  border-color: #999999;
 }
 
 /* Edge styles */
@@ -409,36 +422,38 @@ defineExpose({
 
 /* Dark mode — .dark class (e.g. VitePress) */
 .dark .nr-flowviewer {
-  --nr-flow-bg: #1e1e2e;
-  --nr-grid-color: #374151;
-  --nr-tab-bg: #1f2937;
-  --nr-tab-active-bg: #111827;
-  --nr-tab-text: #94a3b8;
-  --nr-tab-active-text: #f1f5f9;
-  --nr-tab-hover-bg: rgba(255, 255, 255, 0.08);
-  --nr-btn-bg: #1f2937;
-  --nr-btn-bg-hover: #374151;
-  --nr-wire-color: #6b7280;
-  --nr-port-color: rgb(75, 85, 99);
-  --nr-port-border-color: rgb(107, 114, 128);
-  /* --nr-label-color intentionally stays #000000 — node backgrounds are always light pastels */
+  --nr-flow-bg: #2d3136;
+  --nr-grid-color: #434954;
+  --nr-border-color: #555b64;
+  --nr-tab-bg: #25292e;
+  --nr-tab-active-bg: #343a40;
+  --nr-tab-text: #c7ccd1;
+  --nr-tab-active-text: #ffffff;
+  --nr-tab-hover-bg: #30353b;
+  --nr-btn-bg: #343a40;
+  --nr-btn-bg-hover: #434954;
+  --nr-wire-color: #8c949d;
+  --nr-port-color: #555b64;
+  --nr-port-border-color: #8c949d;
+  /* --nr-label-color intentionally stays dark; node backgrounds are always light pastels */
 }
 
 /* Dark mode — system preference (standalone use outside VitePress) */
 @media (prefers-color-scheme: dark) {
   .nr-flowviewer:not([data-theme='light']) {
-    --nr-flow-bg: #1e1e2e;
-    --nr-grid-color: #374151;
-    --nr-tab-bg: #1f2937;
-    --nr-tab-active-bg: #111827;
-    --nr-tab-text: #94a3b8;
-    --nr-tab-active-text: #f1f5f9;
-    --nr-tab-hover-bg: rgba(255, 255, 255, 0.08);
-    --nr-btn-bg: #1f2937;
-    --nr-btn-bg-hover: #374151;
-    --nr-wire-color: #6b7280;
-    --nr-port-color: rgb(75, 85, 99);
-    --nr-port-border-color: rgb(107, 114, 128);
+    --nr-flow-bg: #2d3136;
+    --nr-grid-color: #434954;
+    --nr-border-color: #555b64;
+    --nr-tab-bg: #25292e;
+    --nr-tab-active-bg: #343a40;
+    --nr-tab-text: #c7ccd1;
+    --nr-tab-active-text: #ffffff;
+    --nr-tab-hover-bg: #30353b;
+    --nr-btn-bg: #343a40;
+    --nr-btn-bg-hover: #434954;
+    --nr-wire-color: #8c949d;
+    --nr-port-color: #555b64;
+    --nr-port-border-color: #8c949d;
   }
 }
 </style>

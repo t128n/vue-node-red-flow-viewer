@@ -10,6 +10,7 @@
       borderRadius: 'var(--nr-node-radius, 5px)',
       position: 'relative',
       overflow: 'visible',
+      boxShadow: 'var(--nr-node-shadow, 0 1px 4px rgba(0, 0, 0, 0.18))',
     }"
   >
     <img
