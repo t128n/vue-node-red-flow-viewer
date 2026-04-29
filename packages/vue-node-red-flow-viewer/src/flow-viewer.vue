@@ -305,7 +305,12 @@ defineExpose({
   --nr-tab-active-bg: #ffffff;
   --nr-tab-text: #64748b;
   --nr-tab-active-text: #0f172a;
+  --nr-tab-hover-bg: rgba(255, 255, 255, 0.5);
+  --nr-btn-bg: #ffffff;
+  --nr-btn-hover-bg: #f8fafc;
+  --nr-edge-disabled: rgb(204, 204, 204);
 
+  color-scheme: light dark;
   width: 100%;
   height: 100%;
   background-color: var(--nr-flow-bg);
@@ -338,7 +343,7 @@ defineExpose({
 }
 
 .nr-flowviewer__tab:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--nr-tab-hover-bg);
 }
 
 .nr-flowviewer__tab--active {
@@ -364,7 +369,7 @@ defineExpose({
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: var(--nr-btn-bg);
   border: 1px solid var(--nr-grid-color);
   border-radius: 6px;
   cursor: pointer;
@@ -374,14 +379,48 @@ defineExpose({
 }
 
 .nr-flowviewer__btn:hover {
-  background: #f8fafc;
+  background: var(--nr-btn-hover-bg);
   color: var(--nr-tab-active-text);
   border-color: var(--nr-tab-text);
 }
 
+
+@media (prefers-color-scheme: dark) {
+  .nr-flowviewer {
+    --nr-flow-bg: #0f172a;
+    --nr-grid-color: #334155;
+    --nr-wire-color: #94a3b8;
+    --nr-port-color: rgb(71, 85, 105);
+    --nr-port-border-color: rgb(148, 163, 184);
+    --nr-tab-bg: #111827;
+    --nr-tab-active-bg: #1f2937;
+    --nr-tab-text: #94a3b8;
+    --nr-tab-active-text: #e2e8f0;
+    --nr-tab-hover-bg: rgba(148, 163, 184, 0.15);
+    --nr-btn-bg: #1e293b;
+    --nr-btn-hover-bg: #334155;
+    --nr-edge-disabled: rgb(100, 116, 139);
+  }
+}
+
+:where(.dark, [data-theme='dark']) .nr-flowviewer {
+  --nr-flow-bg: #0f172a;
+  --nr-grid-color: #334155;
+  --nr-wire-color: #94a3b8;
+  --nr-port-color: rgb(71, 85, 105);
+  --nr-port-border-color: rgb(148, 163, 184);
+  --nr-tab-bg: #111827;
+  --nr-tab-active-bg: #1f2937;
+  --nr-tab-text: #94a3b8;
+  --nr-tab-active-text: #e2e8f0;
+  --nr-tab-hover-bg: rgba(148, 163, 184, 0.15);
+  --nr-btn-bg: #1e293b;
+  --nr-btn-hover-bg: #334155;
+  --nr-edge-disabled: rgb(100, 116, 139);
+}
 /* Edge styles */
 .vue-flow__edge.nr-link-disabled .vue-flow__edge-path {
-  stroke: rgb(204, 204, 204);
+  stroke: var(--nr-edge-disabled);
   stroke-dasharray: 10, 8;
   stroke-width: 2;
 }

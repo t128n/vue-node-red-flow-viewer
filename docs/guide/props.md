@@ -71,8 +71,19 @@ Set these variables on the component or a wrapper class.
 | `--nr-group-label-size`  | `12px`             | Group label size.            |
 | `--nr-tab-bg`            | `#f1f5f9`          | Tab bar background.          |
 | `--nr-tab-active-bg`     | `#ffffff`          | Active tab background.       |
+| `--nr-tab-hover-bg`      | `#e2e8f0`          | Tab hover background.        |
 | `--nr-tab-text`          | `#64748b`          | Inactive tab text.           |
 | `--nr-tab-active-text`   | `#0f172a`          | Active tab text.             |
+| `--nr-btn-bg`            | `#ffffff`          | Control button background.   |
+| `--nr-btn-hover-bg`      | `#f3f4f6`          | Control button hover state.  |
+| `--nr-edge-disabled`     | `#d1d5db`          | Disabled edge color.         |
+
+### Dark mode
+
+FlowViewer supports dark mode in two ways:
+
+- automatic detection with `@media (prefers-color-scheme: dark)`,
+- app-controlled toggles with `.dark` or `[data-theme='dark']` on an ancestor element.
 
 ## `transformFlow(flowData, flowId, options)`
 

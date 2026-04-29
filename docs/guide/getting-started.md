@@ -77,8 +77,35 @@ The component exposes CSS variables on the root viewer element.
   --nr-wire-color: #9aa7bd;
   --nr-tab-bg: #111827;
   --nr-tab-active-bg: #1f2937;
+  --nr-tab-hover-bg: #374151;
   --nr-tab-text: #9ca3af;
   --nr-tab-active-text: #f9fafb;
+  --nr-btn-bg: #1f2937;
+  --nr-btn-hover-bg: #374151;
+  --nr-edge-disabled: #6b7280;
+}
+```
+
+Dark mode can be enabled in either of these ways:
+
+1. Automatic detection with `@media (prefers-color-scheme: dark)`.
+2. App-controlled toggles using `.dark` or `[data-theme='dark']` on an ancestor.
+
+Example class-based override:
+
+```css
+.dark .viewer {
+  --nr-flow-bg: #0b1020;
+  --nr-grid-color: #26324f;
+  --nr-wire-color: #9aa7bd;
+  --nr-tab-bg: #111827;
+  --nr-tab-active-bg: #1f2937;
+  --nr-tab-hover-bg: #374151;
+  --nr-tab-text: #9ca3af;
+  --nr-tab-active-text: #f9fafb;
+  --nr-btn-bg: #1f2937;
+  --nr-btn-hover-bg: #374151;
+  --nr-edge-disabled: #6b7280;
 }
 ```
 
