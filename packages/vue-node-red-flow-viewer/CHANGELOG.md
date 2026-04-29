@@ -1,8 +1,6 @@
 # Changelog
 
-
 ## v0.0.1
-
 
 ### 🚀 Enhancements
 
@@ -17,4 +15,3 @@
 ### ❤️ Contributors
 
 - Torben Haack ([@t128n](https://github.com/t128n))
-

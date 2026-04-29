@@ -181,11 +181,11 @@ export function transformFlow(
     vfNodes.unshift({
       id: grp.id,
       type: 'nrGroup',
-      position: { x: Math.round(gx - PADDING), y: Math.round(gy - PADDING) },
-      style: { width: `${gw + PADDING * 2}px`, height: `${gh + PADDING * 2}px`, zIndex: -10 },
+      position: { x: Math.round(gx), y: Math.round(gy) },
+      style: { width: `${gw}px`, height: `${gh}px`, zIndex: -10 },
       data: {
-        width: gw + PADDING * 2,
-        height: gh + PADDING * 2,
+        width: gw,
+        height: gh,
         name: grp.name,
         style: grp.style,
         disabled: !!grp.d,
@@ -203,8 +203,8 @@ export function transformFlow(
     if (!node.parentNode) continue
     const grp = groups[node.parentNode]
     if (!grp) continue
-    node.position.x -= Math.round((grp.x ?? 0) - PADDING)
-    node.position.y -= Math.round((grp.y ?? 0) - PADDING)
+    node.position.x -= Math.round(grp.x ?? 0)
+    node.position.y -= Math.round(grp.y ?? 0)
   }
 
   // Optional: dashed link-lines

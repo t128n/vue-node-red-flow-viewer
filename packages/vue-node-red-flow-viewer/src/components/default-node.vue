@@ -67,6 +67,7 @@
         right: '4px',
         fontSize: 'var(--nr-label-font-size, 14px)',
         fontFamily: 'var(--nr-font-family, Helvetica, sans-serif)',
+        color: 'var(--nr-label-color, #000000)',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',

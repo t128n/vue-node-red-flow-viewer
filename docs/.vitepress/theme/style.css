@@ -10,6 +10,20 @@
   --vp-c-brand-2: #ff4d4d;
   --vp-c-brand-3: #d32f2f;
   --vp-c-brand-soft: rgba(255, 107, 107, 0.16);
+
+  /* FlowViewer dark mode overrides for live doc examples */
+  --nr-flow-bg: #1e1e2e;
+  --nr-grid-color: #374151;
+  --nr-tab-bg: #1f2937;
+  --nr-tab-active-bg: #111827;
+  --nr-tab-text: #94a3b8;
+  --nr-tab-active-text: #f1f5f9;
+  --nr-tab-hover-bg: rgba(255, 255, 255, 0.08);
+  --nr-btn-bg: #1f2937;
+  --nr-btn-bg-hover: #374151;
+  --nr-wire-color: #6b7280;
+  --nr-port-color: rgb(75, 85, 99);
+  --nr-port-border-color: rgb(107, 114, 128);
 }
 
 .VPHomeHero .name {

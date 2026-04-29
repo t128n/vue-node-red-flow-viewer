@@ -32,7 +32,7 @@ const containerStyle = computed(() => {
 
 const labelStyle = computed(() => {
   const pos = props.data.style?.['label-position'] || 'nw'
-  const color = props.data.style?.color || 'grey'
+  const color = props.data.style?.color || 'var(--nr-label-color, #000000)'
   const base: CSSProperties = {
     position: 'absolute',
     color,
