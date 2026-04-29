@@ -15,6 +15,7 @@
     "docs/.vitepress/cache/**",
     "docs/.vitepress/dist/**",
     "pnpm-lock.yaml",
-    "packages/vue-node-red-flow-viewer/preview/flows/test-flow.json"
+    "packages/vue-node-red-flow-viewer/preview/flows/test-flow.json",
+    "packages/vue-node-red-flow-viewer/CHANGELOG.md"
   ]
 }
