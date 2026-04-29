@@ -42,6 +42,15 @@ export function transformFlow(
         for (const targetId of port) hasInputMap[targetId] = true
       }
     }
+    // Subflow in-port wires are stored in def.in[].wires, not n.wires
+    if (n.type === 'subflow' && n.id === flowId) {
+      for (const inp of n.in ?? []) {
+        for (const wire of inp.wires ?? []) {
+          const targetId = typeof wire === 'string' ? wire : wire.id
+          if (targetId) hasInputMap[targetId] = true
+        }
+      }
+    }
   }
 
   const vfNodes: FlowViewerNode[] = []
@@ -72,7 +81,7 @@ export function transformFlow(
     const { lines: labelLines } = getLabelParts(labelStr)
     const { width, height } = getNodeSize(obj, labelStr)
     const imageSrc = images ? getImageSrc(obj, subflowObj) : null
-    const outputCount = (obj.wires ?? []).length
+    const outputCount = Math.max((obj.wires ?? []).length, obj.outputs ?? 0)
     const hasInput = !!(hasInputMap[obj.id] || (subflowObj?.in?.length ?? 0) > 0)
     const nodeType = getVueFlowNodeType(obj)
 
@@ -310,6 +319,20 @@ function addSubflowConnectors(
         disabled: false,
       },
     })
+    for (const wire of connectorTargets(out.wires)) {
+      const sourceId = typeof wire === 'string' ? wire : wire.id
+      const port = typeof wire === 'string' ? 0 : (wire.port ?? 0)
+      if (sourceId) {
+        vfEdges.push({
+          id: `${sourceId}-p${port}-to-${id}`,
+          source: sourceId,
+          target: id,
+          sourceHandle: `output-${port}`,
+          targetHandle: 'input',
+          style: { stroke: 'var(--nr-wire-color, #999)', strokeWidth: 4 },
+        })
+      }
+    }
   }
 
   if (def.status) {

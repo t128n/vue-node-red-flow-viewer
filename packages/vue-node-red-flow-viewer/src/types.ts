@@ -19,6 +19,7 @@ export interface NodeRedGroupStyle {
 
 export interface NodeRedConnectorTarget {
   id?: string
+  port?: number
 }
 
 export type NodeRedWireTarget = string
@@ -43,6 +44,7 @@ export interface NodeRedNode {
   h?: number
   g?: string
   d?: boolean
+  outputs?: number
   wires?: NodeRedWireTarget[][]
   links?: string[]
   in?: NodeRedSubflowPort[]
