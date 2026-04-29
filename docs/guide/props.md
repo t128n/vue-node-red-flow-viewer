@@ -56,23 +56,27 @@ The parent element must have a height.
 
 Set these variables on the component or a wrapper class.
 
-| Variable                 | Default            | Description                  |
-| ------------------------ | ------------------ | ---------------------------- |
-| `--nr-flow-bg`           | `#ffffff`          | Canvas background.           |
-| `--nr-grid-color`        | `#d1d5db`          | Grid dots and light borders. |
-| `--nr-node-radius`       | `5px`              | Standard node radius.        |
-| `--nr-wire-color`        | `#999`             | Wire color.                  |
-| `--nr-wire-width`        | `3`                | Wire width variable.         |
-| `--nr-font-family`       | system UI stack    | Label font.                  |
-| `--nr-label-font-size`   | `14px`             | Node label size.             |
-| `--nr-port-color`        | `rgb(217,217,217)` | Port fill.                   |
-| `--nr-port-border-color` | `rgb(153,153,153)` | Port border.                 |
-| `--nr-group-radius`      | `5px`              | Group radius.                |
-| `--nr-group-label-size`  | `12px`             | Group label size.            |
-| `--nr-tab-bg`            | `#f1f5f9`          | Tab bar background.          |
-| `--nr-tab-active-bg`     | `#ffffff`          | Active tab background.       |
-| `--nr-tab-text`          | `#64748b`          | Inactive tab text.           |
-| `--nr-tab-active-text`   | `#0f172a`          | Active tab text.             |
+| Variable                 | Default                 | Description                                                                                   |
+| ------------------------ | ----------------------- | --------------------------------------------------------------------------------------------- |
+| `--nr-flow-bg`           | `#ffffff`               | Canvas background.                                                                            |
+| `--nr-grid-color`        | `#d1d5db`               | Grid dots and light borders.                                                                  |
+| `--nr-node-radius`       | `5px`                   | Standard node radius.                                                                         |
+| `--nr-wire-color`        | `#999`                  | Wire color.                                                                                   |
+| `--nr-wire-width`        | `3`                     | Wire width variable.                                                                          |
+| `--nr-font-family`       | system UI stack         | Label font.                                                                                   |
+| `--nr-label-font-size`   | `14px`                  | Node label size.                                                                              |
+| `--nr-label-color`       | `#000000`               | Node label text color. Stays dark by default since node backgrounds are always light pastels. |
+| `--nr-port-color`        | `rgb(217,217,217)`      | Port fill.                                                                                    |
+| `--nr-port-border-color` | `rgb(153,153,153)`      | Port border.                                                                                  |
+| `--nr-group-radius`      | `5px`                   | Group radius.                                                                                 |
+| `--nr-group-label-size`  | `12px`                  | Group label size.                                                                             |
+| `--nr-tab-bg`            | `#f1f5f9`               | Tab bar background.                                                                           |
+| `--nr-tab-active-bg`     | `#ffffff`               | Active tab background.                                                                        |
+| `--nr-tab-text`          | `#64748b`               | Inactive tab text.                                                                            |
+| `--nr-tab-active-text`   | `#0f172a`               | Active tab text.                                                                              |
+| `--nr-tab-hover-bg`      | `rgba(255,255,255,0.5)` | Tab hover background.                                                                         |
+| `--nr-btn-bg`            | `#ffffff`               | Control button background.                                                                    |
+| `--nr-btn-bg-hover`      | `#f8fafc`               | Control button hover background.                                                              |
 
 ## `transformFlow(flowData, flowId, options)`
 
