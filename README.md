@@ -66,13 +66,13 @@ The wrapper needs a height because the viewer fills its parent. Pass the full No
 
 ## Component props
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `flowData` | `NodeRedNode[]` | Required | Node-RED flow export array. |
-| `flowId` | `string \| null` | `null` | Tab or subflow id to display. If omitted, the first tab or subflow is selected. |
-| `options` | `FlowViewerOptions` | See docs | Controls gridlines, icons, labels, dashed link lines, and the currently unused `arrows` option. |
-| `autoFitView` | `boolean` | `true` | Fits the viewport after initialization and content changes. |
-| `fitViewOptions` | `FitViewParams` | `{ padding: 0.1 }` | Options passed to Vue Flow `fitView`. |
+| Prop             | Type                | Default            | Description                                                                                     |
+| ---------------- | ------------------- | ------------------ | ----------------------------------------------------------------------------------------------- |
+| `flowData`       | `NodeRedNode[]`     | Required           | Node-RED flow export array.                                                                     |
+| `flowId`         | `string \| null`    | `null`             | Tab or subflow id to display. If omitted, the first tab or subflow is selected.                 |
+| `options`        | `FlowViewerOptions` | See docs           | Controls gridlines, icons, labels, dashed link lines, and the currently unused `arrows` option. |
+| `autoFitView`    | `boolean`           | `true`             | Fits the viewport after initialization and content changes.                                     |
+| `fitViewOptions` | `FitViewParams`     | `{ padding: 0.1 }` | Options passed to Vue Flow `fitView`.                                                           |
 
 ## Events
 

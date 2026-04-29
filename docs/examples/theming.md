@@ -4,32 +4,32 @@ FlowViewer is fully styled via CSS custom properties. Override them on any ances
 
 ## CSS variables
 
-| Variable | Default | Controls |
-|---|---|---|
-| `--nr-flow-bg` | `#f3f3f3` | Canvas background |
-| `--nr-grid-color` | `#d4d4d4` | Grid dot color |
-| `--nr-border-color` | `#c7c7c7` | Tab / control borders |
-| `--nr-accent-color` | `#8f0000` | Active tab accent |
-| `--nr-wire-color` | `#999999` | Wire stroke |
-| `--nr-wire-width` | `3` | Wire thickness (px) |
-| `--nr-port-color` | `#d9d9d9` | Port fill |
-| `--nr-port-border-color` | `#999999` | Port border |
-| `--nr-node-radius` | `5px` | Node corner radius |
-| `--nr-group-radius` | `5px` | Group corner radius |
-| `--nr-label-color` | `#333333` | Node / group label |
-| `--nr-label-font-size` | `14px` | Node label size |
-| `--nr-group-label-size` | `12px` | Group label size |
-| `--nr-font-family` | Helvetica / Arial | Viewer font |
-| `--nr-node-icon-panel-bg` | `rgba(0,0,0,.08)` | Icon strip background |
-| `--nr-node-separator-color` | `rgba(0,0,0,.12)` | Icon / label separator |
-| `--nr-node-shadow` | `0 1px 4px …` | Node drop shadow |
-| `--nr-tab-bg` | `#eeeeee` | Tab bar background |
-| `--nr-tab-active-bg` | `#ffffff` | Active tab background |
-| `--nr-tab-hover-bg` | `#f8f8f8` | Tab hover background |
-| `--nr-tab-text` | `#666666` | Inactive tab label |
-| `--nr-tab-active-text` | `#333333` | Active tab label |
-| `--nr-btn-bg` | `#f8f8f8` | Control button background |
-| `--nr-btn-bg-hover` | `#ffffff` | Control button hover |
+| Variable                    | Default           | Controls                  |
+| --------------------------- | ----------------- | ------------------------- |
+| `--nr-flow-bg`              | `#f3f3f3`         | Canvas background         |
+| `--nr-grid-color`           | `#d4d4d4`         | Grid dot color            |
+| `--nr-border-color`         | `#c7c7c7`         | Tab / control borders     |
+| `--nr-accent-color`         | `#8f0000`         | Active tab accent         |
+| `--nr-wire-color`           | `#999999`         | Wire stroke               |
+| `--nr-wire-width`           | `3`               | Wire thickness (px)       |
+| `--nr-port-color`           | `#d9d9d9`         | Port fill                 |
+| `--nr-port-border-color`    | `#999999`         | Port border               |
+| `--nr-node-radius`          | `5px`             | Node corner radius        |
+| `--nr-group-radius`         | `5px`             | Group corner radius       |
+| `--nr-label-color`          | `#333333`         | Node / group label        |
+| `--nr-label-font-size`      | `14px`            | Node label size           |
+| `--nr-group-label-size`     | `12px`            | Group label size          |
+| `--nr-font-family`          | Helvetica / Arial | Viewer font               |
+| `--nr-node-icon-panel-bg`   | `rgba(0,0,0,.08)` | Icon strip background     |
+| `--nr-node-separator-color` | `rgba(0,0,0,.12)` | Icon / label separator    |
+| `--nr-node-shadow`          | `0 1px 4px …`     | Node drop shadow          |
+| `--nr-tab-bg`               | `#eeeeee`         | Tab bar background        |
+| `--nr-tab-active-bg`        | `#ffffff`         | Active tab background     |
+| `--nr-tab-hover-bg`         | `#f8f8f8`         | Tab hover background      |
+| `--nr-tab-text`             | `#666666`         | Inactive tab label        |
+| `--nr-tab-active-text`      | `#333333`         | Active tab label          |
+| `--nr-btn-bg`               | `#f8f8f8`         | Control button background |
+| `--nr-btn-bg-hover`         | `#ffffff`         | Control button hover      |
 
 Use the interactive **[Theme Editor](/examples/theme-editor)** to tune values live and copy the generated CSS.
 
@@ -78,9 +78,9 @@ Use the interactive **[Theme Editor](/examples/theme-editor)** to tune values li
   --nr-tab-active-text: #ffffff;
   --nr-btn-bg: #1f2937;
   --nr-btn-bg-hover: #374151;
-  --nr-node-icon-panel-bg: rgba(255,255,255,0.08);
-  --nr-node-separator-color: rgba(255,255,255,0.12);
-  --nr-node-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  --nr-node-icon-panel-bg: rgba(255, 255, 255, 0.08);
+  --nr-node-separator-color: rgba(255, 255, 255, 0.12);
+  --nr-node-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 </style>
 ```

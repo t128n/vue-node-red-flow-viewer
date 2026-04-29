@@ -6,10 +6,10 @@ Subflows are reusable flow snippets defined once and instantiated multiple times
 
 A Node-RED export that uses subflows contains two kinds of entries:
 
-| Entry type | `type` field | Rendered as |
-|---|---|---|
-| Subflow definition | `"subflow"` | Separate tab with the internal wiring |
-| Subflow instance | `"subflow:<definition-id>"` | Regular node on the parent tab |
+| Entry type         | `type` field                | Rendered as                           |
+| ------------------ | --------------------------- | ------------------------------------- |
+| Subflow definition | `"subflow"`                 | Separate tab with the internal wiring |
+| Subflow instance   | `"subflow:<definition-id>"` | Regular node on the parent tab        |
 
 Pass the full export array — including subflow definitions — to `flow-data` and FlowViewer handles the rest.
 
@@ -36,7 +36,9 @@ import flow from './flow.json'
 </script>
 
 <style scoped>
-.viewer { height: 500px; }
+.viewer {
+  height: 500px;
+}
 </style>
 ```
 
