@@ -189,26 +189,26 @@ describe('group conversion', () => {
     expect(g.type).toBe('nrGroup')
   })
 
-  it('positions group with the current group padding', () => {
+  it('positions group at its x/y coordinates from Node-RED JSON', () => {
     const flow = [
       ...base,
       { id: 'g1', type: 'group', z: TAB, x: 100, y: 80, w: 300, h: 200, nodes: [], style: {} },
     ]
     const { nodes } = transformFlow(flow, TAB)
     const g = nodes.find((n) => n.id === 'g1')
-    expect(g.position.x).toBe(88)
-    expect(g.position.y).toBe(68)
+    expect(g.position.x).toBe(100)
+    expect(g.position.y).toBe(80)
   })
 
-  it('sets group width/height from w/h plus current group padding', () => {
+  it('sets group width/height from w/h in Node-RED JSON', () => {
     const flow = [
       ...base,
       { id: 'g1', type: 'group', z: TAB, x: 100, y: 80, w: 300, h: 200, nodes: [], style: {} },
     ]
     const { nodes } = transformFlow(flow, TAB)
     const g = nodes.find((n) => n.id === 'g1')
-    expect(g.data.width).toBe(324)
-    expect(g.data.height).toBe(224)
+    expect(g.data.width).toBe(300)
+    expect(g.data.height).toBe(200)
   })
 
   it('sets parentNode on child nodes inside a group', () => {
@@ -251,6 +251,32 @@ describe('group conversion', () => {
     const gIdx = nodes.findIndex((n) => n.id === 'g1')
     const nIdx = nodes.findIndex((n) => n.id === 'n1')
     expect(gIdx).toBeLessThan(nIdx)
+  })
+
+  it('child node position is relative to group top-left (no double PADDING offset)', () => {
+    // Regression test for issue #3: groups were displaced by PADDING (12px)
+    // because the transform subtracted PADDING from both the group position
+    // and the child offset, shifting everything 12px up-left.
+    const flow = [
+      ...base,
+      { id: 'g1', type: 'group', z: TAB, x: 154, y: 99, w: 652, h: 162, nodes: ['n1'], style: {} },
+      node('n1', 'inject', 300, 140, [[]], { g: 'g1', name: 'SelectGreen' }),
+    ]
+    const { nodes } = transformFlow(flow, TAB)
+    const group = nodes.find((n) => n.id === 'g1')
+    const child = nodes.find((n) => n.id === 'n1')
+
+    // Group must be placed exactly at Node-RED's x/y
+    expect(group.position.x).toBe(154)
+    expect(group.position.y).toBe(99)
+
+    // Child's relative position + group position must equal child's absolute top-left
+    const childW = parseFloat(child.style.width)
+    const childH = parseFloat(child.style.height)
+    const absTLx = 300 - childW / 2
+    const absTLy = 140 - childH / 2
+    expect(child.position.x + group.position.x).toBeCloseTo(absTLx, 0)
+    expect(child.position.y + group.position.y).toBeCloseTo(absTLy, 0)
   })
 })
 
