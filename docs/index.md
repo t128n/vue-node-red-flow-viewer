@@ -8,11 +8,11 @@ hero:
   tagline: 'Vue-based renderer for Node-RED flows.'
   actions:
     - theme: brand
-      text: Get Started
-      link: /guide/getting-started
+      text: Get started
+      link: /guide/installation
     - theme: alt
-      text: API Reference
-      link: /guide/props
+      text: Component props
+      link: /guide/component-props
 ---
 
 ## Install
@@ -26,7 +26,7 @@ import { FlowViewer } from 'vue-node-red-flow-viewer'
 import 'vue-node-red-flow-viewer/style.css'
 ```
 
-## Basic Usage
+## Basic usage
 
 ```vue
 <template>

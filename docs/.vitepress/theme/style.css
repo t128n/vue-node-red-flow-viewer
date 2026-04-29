@@ -29,3 +29,25 @@
 .VPHomeHero .name {
   white-space: pre-line;
 }
+
+.theme-editor-page .VPDoc .container,
+.theme-editor-page .VPDoc .content,
+.theme-editor-page .VPDoc .content-container {
+  max-width: none;
+}
+
+.theme-editor-page .VPDoc .content {
+  padding: 0 32px 64px;
+}
+
+.theme-editor-page .vp-doc > h1,
+.theme-editor-page .vp-doc > p {
+  max-width: 980px;
+}
+
+@media (max-width: 720px) {
+  .theme-editor-page .VPDoc .content {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}

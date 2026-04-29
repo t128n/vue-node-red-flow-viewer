@@ -1,5 +1,11 @@
 # vue-node-red-flow-viewer
 
+[![Version](https://npmx.dev/api/registry/badge/version/vue-node-red-flow-viewer)](https://npmx.dev/package/vue-node-red-flow-viewer)
+[![License](https://npmx.dev/api/registry/badge/license/vue-node-red-flow-viewer)](https://npmx.dev/package/vue-node-red-flow-viewer)
+[![Downloads](https://npmx.dev/api/registry/badge/downloads/vue-node-red-flow-viewer)](https://npmx.dev/package/vue-node-red-flow-viewer)
+[![Types](https://npmx.dev/api/registry/badge/types/vue-node-red-flow-viewer)](https://npmx.dev/package/vue-node-red-flow-viewer)
+[![Dependencies](https://npmx.dev/api/registry/badge/dependencies/vue-node-red-flow-viewer)](https://npmx.dev/package/vue-node-red-flow-viewer)
+
 Vue 3 component library for rendering Node-RED flow JSON with Vue Flow.
 
 📚 **[Documentation](https://t128n.github.io/vue-node-red-flow-viewer/)**
@@ -12,12 +18,18 @@ This package is a Vue-native adaptation of the original node-red-flowviewer-js w
 npm install vue-node-red-flow-viewer
 ```
 
-`vue` is a peer dependency. Vue Flow packages are installed as runtime dependencies.
+`vue@^3.3.0` is a peer dependency. Vue Flow packages are installed as runtime dependencies.
+
+Import the stylesheet once in your app:
+
+```ts
+import 'vue-node-red-flow-viewer/style.css'
+```
 
 ## Usage
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { FlowViewer } from 'vue-node-red-flow-viewer'
 import 'vue-node-red-flow-viewer/style.css'
 
@@ -29,34 +41,38 @@ const flowData = [
 </script>
 
 <template>
-  <FlowViewer
-    class="viewer"
-    :flow-data="flowData"
-    :options="{ gridlines: true, images: true, labels: true, linklines: false }"
-  />
+  <div class="viewer">
+    <FlowViewer
+      :flow-data="flowData"
+      :options="{ gridlines: true, images: true, labels: true, linklines: false }"
+    />
+  </div>
 </template>
 
-<style>
+<style scoped>
 .viewer {
-  width: 100%;
   height: 480px;
 }
 </style>
 ```
 
+The wrapper needs a height because the viewer fills its parent. Pass the full Node-RED export array so tabs, groups, wires, and subflows can render.
+
 ## Exports
 
-- `FlowViewer`: Vue component for rendering a flow tab or subflow.
+- `FlowViewer`: Vue component for rendering a read-only flow tab or subflow.
 - `transformFlow(flowdata, flowId, opts)`: converts Node-RED flow JSON into Vue Flow nodes and edges.
-- `setImageContent(imageNameToContent)`: registers optional node icon image content.
+- `setImageContent(content)`: replaces the icon content map used for node images.
 
-## Component Props
+## Component props
 
-- `flowData` required: Node-RED flow JSON array.
-- `flowId`: tab or subflow id to display. If omitted, the first tab/subflow is selected.
-- `options`: `{ arrows, gridlines, images, linklines, labels }`.
-- `autoFitView`: automatically fit the viewport after content changes.
-- `fitViewOptions`: options passed to Vue Flow `fitView`.
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `flowData` | `NodeRedNode[]` | Required | Node-RED flow export array. |
+| `flowId` | `string \| null` | `null` | Tab or subflow id to display. If omitted, the first tab or subflow is selected. |
+| `options` | `FlowViewerOptions` | See docs | Controls gridlines, icons, labels, dashed link lines, and the currently unused `arrows` option. |
+| `autoFitView` | `boolean` | `true` | Fits the viewport after initialization and content changes. |
+| `fitViewOptions` | `FitViewParams` | `{ padding: 0.1 }` | Options passed to Vue Flow `fitView`. |
 
 ## Events
 
@@ -66,6 +82,8 @@ const flowData = [
 - `viewport-fit`
 - `copy`
 - `update:flowId`
+
+See the [events docs](https://t128n.github.io/vue-node-red-flow-viewer/guide/events.html) for payload details.
 
 ## Styling
 
@@ -80,14 +98,15 @@ The component ships CSS variables for theming:
 }
 ```
 
-Import `vue-node-red-flow-viewer/style.css` once in the consuming app.
+See the [CSS variables docs](https://t128n.github.io/vue-node-red-flow-viewer/guide/css-variables.html) for the full list.
 
 ## Development
 
 ```bash
-npm test
-npm run lib:build
-npm pack --dry-run
+pnpm install
+pnpm test
+pnpm build
+pnpm docs:build
 ```
 
 ## License
